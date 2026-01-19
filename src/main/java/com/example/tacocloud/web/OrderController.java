@@ -1,5 +1,6 @@
 package com.example.tacocloud.web;
 
+import com.example.tacocloud.data.OrderRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -21,6 +22,11 @@ public class OrderController {
     public String orderForm() {
         return "orderForm";
     }
+    private OrderRepository orderRepo;
+
+    public OrderController(OrderRepository orderRepo) {
+        this.orderRepo = orderRepo;
+    }
 
     @PostMapping
     public String processOrder(@Valid TacoOrder order, Errors errors,
@@ -29,8 +35,11 @@ public class OrderController {
         if (errors.hasErrors()) {
             return "orderForm";
         }
-        log.info("Order submitted: {}", order);
+        orderRepo.save(order);
         sessionStatus.setComplete();
+
         return "redirect:/";
     }
+
+
 }
