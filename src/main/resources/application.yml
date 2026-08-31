@@ -1,0 +1,34 @@
+spring:
+    application:
+        name: taco-cloud
+
+    thymeleaf:
+        cache: false
+
+    datasource:
+        generate-unique-name: false
+        name: taco-cloud
+
+    security:
+      oauth2:
+        client:
+          registration:
+            google:
+              client-id: ${GOOGLE_CLIENT_ID}
+              client-secret: ${GOOGLE_CLIENT_SECRET}
+
+
+    jpa:
+      properties:
+         hibernate:
+            globally_quoted_identifiers: true
+
+
+logging:
+  level:
+    org:
+      hibernate:
+#        SQL: DEBUG
+    org.springframework.security: TRACE
+    org.springframework.security.oauth2: DEBUG
+
