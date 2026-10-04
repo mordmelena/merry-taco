@@ -1,4 +1,4 @@
-Java Spring web Taco Ordering application.
+Java Spring web taco ordering application.
 
 Register a user.
 Securely login. 
